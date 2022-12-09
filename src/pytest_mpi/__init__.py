@@ -241,7 +241,7 @@ def pytest_configure(config):
 
     # check whether to mute output
     unmute = config.getoption(UNMUTE_NONZERO_RANKS_ARG)
-    if mpi._is_testing_mpi and not unmute:
+    if mpi._is_testing_mpi and int(unmute) != -1:
         try:
             from mpi4py import MPI
         except ImportError:
@@ -269,6 +269,6 @@ def pytest_addoption(parser):
         help="Run *only* MPI tests, this should be paired with mpirun."
     )
     group.addoption(
-        UNMUTE_NONZERO_RANKS_ARG, action="store_true", default=False,
+        UNMUTE_NONZERO_RANKS_ARG, action="store_true", default=0,
         help="Show all output from all ranks, not just zero."
     )
