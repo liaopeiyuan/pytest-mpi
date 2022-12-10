@@ -269,6 +269,6 @@ def pytest_addoption(parser):
         help="Run *only* MPI tests, this should be paired with mpirun."
     )
     group.addoption(
-        UNMUTE_NONZERO_RANKS_ARG, action="store_true", default=0,
+        UNMUTE_NONZERO_RANKS_ARG, action="store", default=0,
         help="Show all output from all ranks, not just zero."
     )
